@@ -89,7 +89,7 @@ public class Service {
 
         List<Employee> targetEmployees = new ArrayList<>();
         for (Employee employee : employees) {
-            if (employee.getGender().contentEquals(gender) {
+            if (employee.getGender().contentEquals(gender)) {
                 targetEmployees.add(employee);
             }
         }

@@ -22,7 +22,8 @@ public class CompaniesResource {
 
     @PostMapping(produces = {"application/json"})
     public ResponseEntity<String> add(@RequestBody Company company) {
-        service.addCompany(new Company(company.getCompanyName(),company.getEmployeeNumber()));
-        return ResponseEntity.ok("Success");
+        Company newCompany = new Company(company.getCompanyName(), company.getEmployeeNumber());
+        service.addCompany(newCompany);
+        return ResponseEntity.ok("Success: id = " + newCompany.getId());
     }
 }

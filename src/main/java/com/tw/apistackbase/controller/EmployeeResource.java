@@ -22,7 +22,8 @@ public class EmployeeResource {
 
     @PostMapping(produces = {"application/json"})
     public ResponseEntity<String> add(@RequestBody Employee employee) {
-        service.addEmployee(new Employee(employee.getName(),employee.getAge(),employee.getGender(),employee.getSalary()));
-        return ResponseEntity.ok("Success");
+        Employee newEmployee = new Employee(employee.getName(), employee.getAge(), employee.getGender(), employee.getSalary());
+        service.addEmployee(newEmployee);
+        return ResponseEntity.ok("Success: id = " + newEmployee.getId());
     }
 }

@@ -23,12 +23,14 @@ public class CompaniesResource {
 
     @PostMapping(produces = {"application/json"})
     public ResponseEntity<String> add(@RequestBody Company company) {
+        List<Employee> tempEmployees = new ArrayList<>();
         for (Employee employee : company.getEmployees()) {
             Employee newEmployee = new Employee(employee.getName(), employee.getAge(), employee.getGender(), employee.getSalary());
             service.addEmployee(newEmployee);
+            tempEmployees.add(newEmployee);
         }
 
-        Company newCompany = new Company(company.getCompanyName(), company.getEmployeeNumber(), company.getEmployees());
+        Company newCompany = new Company(company.getCompanyName(), company.getEmployeeNumber(), tempEmployees);
         service.addCompany(newCompany);
         return ResponseEntity.ok("Success: id = " + newCompany.getId());
     }

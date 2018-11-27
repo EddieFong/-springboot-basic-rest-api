@@ -16,10 +16,10 @@ public class CompaniesResource {
     private final Logger log = Logger.getLogger(this.getClass().getName());
     Service service = new Service();
 
-
     @GetMapping(path = "", produces = {"application/json"})
-    public ResponseEntity<List<Company>> getAll() {
-        return ResponseEntity.ok(service.getCompany());
+    public ResponseEntity<List<Company>> getAll(@RequestParam(value = "page", required=false) Integer page, @RequestParam(value = "pageSize", required=false) Integer pageSize) {
+        if (pageSize == null) return ResponseEntity.ok(service.getCompany());
+        return ResponseEntity.ok(service.getCompaniesPageQuery(page,pageSize));
     }
 
     @PostMapping(produces = {"application/json"})
@@ -45,4 +45,6 @@ public class CompaniesResource {
     public ResponseEntity<List<Employee>> getEmployeesById(@PathVariable int id) {
         return ResponseEntity.ok(service.getEmployeesById(id));
     }
+
+
 }

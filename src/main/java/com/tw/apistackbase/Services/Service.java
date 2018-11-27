@@ -78,7 +78,7 @@ public class Service {
     public List<Employee> getEmployeesPageQuery(int page, int pageSize) {
         List<Employee> targetEmployees = new ArrayList<>();
         for (Employee employee : employees) {
-            if ((employee.getId()>=page*pageSize) && (employee.getId()<page*(pageSize+1) ) ) {
+            if ((employee.getId()>=(page-1)*pageSize) && (employee.getId()<page*pageSize ) ) {
                 targetEmployees.add(employee);
             }
         }
@@ -89,7 +89,7 @@ public class Service {
 
         List<Employee> targetEmployees = new ArrayList<>();
         for (Employee employee : employees) {
-            if (employee.getGender().contentEquals(gender)) {
+            if (employee.getGender().contentEquals(gender) {
                 targetEmployees.add(employee);
             }
         }

@@ -1,6 +1,14 @@
 package com.tw.apistackbase.dto;
 
 public class Employee {
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Employee.count = count;
+    }
+
     static int count=0;
     private final int id;
 
@@ -46,7 +54,6 @@ public class Employee {
     private  int salary;
 
     public Employee(String name, int age, String gender, int salary) {
-        count++;
         this.id = count;
         this.name = name;
         this.age = age;

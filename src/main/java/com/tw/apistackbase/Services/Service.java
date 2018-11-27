@@ -29,10 +29,12 @@ public class Service {
     static List<Company> companies = new ArrayList<>();
 
     public void addEmployee(Employee employee) {
+        Employee.setCount(Employee.getCount()+1);
         employees.add(employee);
     }
 
     public void addCompany(Company company) {
+        Company.setCount(Company.getCount()+1);
         companies.add(company);
     }
 
@@ -62,4 +64,25 @@ public class Service {
         }
         return null;
     }
+
+    public List<Company> getCompaniesPageQuery(int page, int pageSize) {
+        List<Company> targetCompanies = new ArrayList<>();
+        for (Company company : companies) {
+            if ((company.getId()>=page*pageSize) && (company.getId()<page*(pageSize+1) ) ) {
+                targetCompanies.add(company);
+            }
+        }
+        return targetCompanies;
+    }
+
+    public List<Employee> getEmployeesPageQuery(int page, int pageSize) {
+        List<Employee> targetEmployees = new ArrayList<>();
+        for (Employee employee : employees) {
+            if ((employee.getId()>=page*pageSize) && (employee.getId()<page*(pageSize+1) ) ) {
+                targetEmployees.add(employee);
+            }
+        }
+        return targetEmployees;
+    }
+
 }

@@ -1,12 +1,10 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.Services.Service;
-import com.tw.apistackbase.dto.Company;
 import com.tw.apistackbase.dto.Employee;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,4 +31,10 @@ public class EmployeeResource {
     public ResponseEntity<Employee> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getEmployee(id));
     }
+
+    @DeleteMapping(path = "/{id}", produces = {"application/json"})
+    public ResponseEntity<String> delEmployeeById(@PathVariable int id) {
+        return ResponseEntity.ok(service.delEmployee(id));
+    }
+
 }

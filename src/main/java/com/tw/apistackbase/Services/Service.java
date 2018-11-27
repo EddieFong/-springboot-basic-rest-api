@@ -2,7 +2,6 @@ package com.tw.apistackbase.Services;
 
 import com.tw.apistackbase.dto.Company;
 import com.tw.apistackbase.dto.Employee;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,5 +93,27 @@ public class Service {
             }
         }
         return targetEmployees;
+    }
+
+    public String delEmployee(int id) {
+        String target = null;
+        for (Employee employee : employees) {
+            if (employee.getId()==id) {
+                target = employee.getName()+ " is deleted";
+                employees.remove(employee);
+            }
+        }
+        return target;
+    }
+
+    public String delCompany(int id) {
+        String target = null;
+        for (Company company : companies) {
+            if (company.getId()==id) {
+                target = company.getCompanyName() + " is deleted";
+                companies.remove(company);
+            }
+        }
+        return target;
     }
 }

@@ -46,5 +46,10 @@ public class CompaniesResource {
         return ResponseEntity.ok(service.getEmployeesById(id));
     }
 
+    @DeleteMapping(path = "/{id}", produces = {"application/json"})
+    public ResponseEntity<String> delCompanyById(@PathVariable int id) {
+        return ResponseEntity.ok(service.delCompany(id));
+    }
+
 
 }

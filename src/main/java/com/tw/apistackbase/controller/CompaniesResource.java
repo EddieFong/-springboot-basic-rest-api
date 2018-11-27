@@ -17,7 +17,7 @@ public class CompaniesResource {
 
     @GetMapping(path = "", produces = {"application/json"})
     public ResponseEntity<List<Company>> getAll() {
-        return ResponseEntity.ok(service.getCompanies());
+        return ResponseEntity.ok(service.getCompany());
     }
 
     @PostMapping(produces = {"application/json"})
@@ -25,5 +25,10 @@ public class CompaniesResource {
         Company newCompany = new Company(company.getCompanyName(), company.getEmployeeNumber());
         service.addCompany(newCompany);
         return ResponseEntity.ok("Success: id = " + newCompany.getId());
+    }
+
+    @GetMapping(path = "/{id}", produces = {"application/json"})
+    public ResponseEntity<Company> getById(@PathVariable int id) {
+        return ResponseEntity.ok(service.getCompany(id));
     }
 }

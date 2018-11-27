@@ -1,6 +1,7 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.Services.Service;
+import com.tw.apistackbase.dto.Company;
 import com.tw.apistackbase.dto.Employee;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,10 @@ public class EmployeeResource {
         Employee newEmployee = new Employee(employee.getName(), employee.getAge(), employee.getGender(), employee.getSalary());
         service.addEmployee(newEmployee);
         return ResponseEntity.ok("Success: id = " + newEmployee.getId());
+    }
+
+    @GetMapping(path = "/{id}", produces = {"application/json"})
+    public ResponseEntity<Employee> getById(@PathVariable int id) {
+        return ResponseEntity.ok(service.getEmployee(id));
     }
 }

@@ -2,6 +2,7 @@ package com.tw.apistackbase.Services;
 
 import com.tw.apistackbase.dto.Company;
 import com.tw.apistackbase.dto.Employee;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Service {
 
     static List<Employee> employees = new ArrayList<>();
 
-    public static List<Company> getCompanies() {
+    public static List<Company> getCompany() {
         return companies;
     }
 
@@ -33,5 +34,23 @@ public class Service {
 
     public void addCompany(Company company) {
         companies.add(company);
+    }
+
+    public Company getCompany(int id) {
+         for (Company company : companies) {
+            if (company.getId()==id) {
+                return company;
+            }
+        }
+        return null;
+    }
+
+    public Employee getEmployee(int id) {
+        for (Employee employee : employees) {
+            if (employee.getId()==id) {
+                return employee;
+            }
+        }
+        return null;
     }
 }

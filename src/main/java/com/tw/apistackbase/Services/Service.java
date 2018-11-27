@@ -68,7 +68,7 @@ public class Service {
     public List<Company> getCompaniesPageQuery(int page, int pageSize) {
         List<Company> targetCompanies = new ArrayList<>();
         for (Company company : companies) {
-            if ((company.getId()>=page*pageSize) && (company.getId()<page*(pageSize+1) ) ) {
+            if ((company.getId()>=(page-1)*pageSize) && (company.getId()<page*pageSize ) ) {
                 targetCompanies.add(company);
             }
         }

@@ -6,6 +6,7 @@ import com.tw.apistackbase.dto.Employee;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -38,5 +39,10 @@ public class CompaniesResource {
     @GetMapping(path = "/{id}", produces = {"application/json"})
     public ResponseEntity<Company> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getCompany(id));
+    }
+
+    @GetMapping(path = "/{id}/employees", produces = {"application/json"})
+    public ResponseEntity<List<Employee>> getEmployeesById(@PathVariable int id) {
+        return ResponseEntity.ok(service.getEmployeesById(id));
     }
 }

@@ -53,4 +53,13 @@ public class Service {
         }
         return null;
     }
+
+    public  List<Employee>  getEmployeesById(int id) {
+        for (Company company : companies) {
+            if (company.getId()==id) {
+                return company.getEmployees();
+            }
+        }
+        return null;
+    }
 }

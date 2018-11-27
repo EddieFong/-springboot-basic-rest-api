@@ -17,8 +17,9 @@ public class EmployeeResource {
     Service service = new Service();
 
     @GetMapping(path = "", produces = {"application/json"})
-    public ResponseEntity<List<Employee>> getAll() {
-        return ResponseEntity.ok(service.getEmployees());
+    public ResponseEntity<List<Employee>> getAll(@RequestParam(required = false) String gender) {
+        if (gender == null) return ResponseEntity.ok(service.getEmployees());
+        return ResponseEntity.ok(service.getEmployeesByGender(gender));
     }
 
     @PostMapping(produces = {"application/json"})

@@ -85,4 +85,14 @@ public class Service {
         return targetEmployees;
     }
 
+    public  List<Employee> getEmployeesByGender(String gender) {
+
+        List<Employee> targetEmployees = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (employee.getGender().contentEquals(gender)) {
+                targetEmployees.add(employee);
+            }
+        }
+        return targetEmployees;
+    }
 }

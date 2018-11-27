@@ -26,14 +26,23 @@ public class Company {
 
     private int employeeNumber;
     private String companyName;
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     private List<Employee> employees;
 
-    public Company(String companyName, int employeeNumber) {
+    public Company(String companyName, int employeeNumber, List<Employee> employees) {
         count++;
         this.id = count;
         this.companyName = companyName;
         this.employeeNumber = employeeNumber;
-        employees = new ArrayList<>();
+        this.employees = employees;
     }
 
     public int getId() {

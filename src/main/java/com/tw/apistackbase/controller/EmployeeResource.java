@@ -3,9 +3,12 @@ package com.tw.apistackbase.controller;
 import com.tw.apistackbase.Services.Service;
 import com.tw.apistackbase.dto.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,7 +33,10 @@ public class EmployeeResource {
     public ResponseEntity<String> add(@RequestBody Employee employee) {
         Employee newEmployee = new Employee(employee.getName(), employee.getAge(), employee.getGender(), employee.getSalary());
         service.addEmployee(newEmployee);
-        return ResponseEntity.ok("Success: id = " + newEmployee.getId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("employees1/" + new Integer(newEmployee.getId()).toString()));
+        headers.add("Location",  "employees2/" + new Integer(newEmployee.getId()).toString());
+        return new ResponseEntity<String>("Success", headers, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/{id}", produces = {"application/json"})

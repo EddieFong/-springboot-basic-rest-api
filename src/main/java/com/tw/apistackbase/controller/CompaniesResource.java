@@ -31,7 +31,7 @@ public class CompaniesResource {
             tempEmployees.add(newEmployee);
         }
 
-        Company newCompany = new Company(company.getCompanyName(), company.getEmployeeNumber(), tempEmployees);
+        Company newCompany = new Company(company.getCompanyName(), tempEmployees.size(), tempEmployees);
         service.addCompany(newCompany);
         return ResponseEntity.ok("Success: id = " + newCompany.getId());
     }

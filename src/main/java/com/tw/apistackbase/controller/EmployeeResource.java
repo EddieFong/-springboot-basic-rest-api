@@ -2,6 +2,7 @@ package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.Services.Service;
 import com.tw.apistackbase.dto.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,12 @@ import java.util.logging.Logger;
 @RequestMapping("/employees")
 public class EmployeeResource {
     private final Logger log = Logger.getLogger(this.getClass().getName());
-    Service service = new Service();
+    Service service;
+
+    @Autowired
+    public EmployeeResource(Service service) {
+        this.service = service;
+    }
 
     @GetMapping(path = "", produces = {"application/json"})
     public ResponseEntity<List<Employee>> getAll(@RequestParam(required = false) String gender) {

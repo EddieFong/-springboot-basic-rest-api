@@ -5,27 +5,31 @@ import com.tw.apistackbase.dto.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@org.springframework.stereotype.Service
 public class Service {
-    public static List<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public static void setEmployees(List<Employee> employees) {
-        Service.employees = employees;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
-    static List<Employee> employees = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
 
-    public static List<Company> getCompany() {
+    public List<Company> getCompany() {
         return companies;
     }
 
-    public static void setCompanies(List<Company> companies) {
-        Service.companies = companies;
+    public List<Company> getCompanies() {
+        return companies;
     }
 
-    static List<Company> companies = new ArrayList<>();
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
+    }
+
+    List<Company> companies = new ArrayList<>();
 
     public void addEmployee(Employee employee) {
         Employee.setCount(Employee.getCount()+1);

@@ -120,4 +120,17 @@ public class Service {
         companies.remove(targetCompany);
         return target;
     }
+
+    public Company updateCompany(int id, Company company) {
+        Company targetCompany = null;
+        for (Company companyElement : companies) {
+            if (companyElement.getId()==id) {
+                targetCompany = companyElement;
+            }
+        }
+        targetCompany.setCompanyName(company.getCompanyName());
+        targetCompany.setEmployeeNumber(company.getEmployeeNumber());
+        targetCompany.setEmployees(company.getEmployees());
+        return targetCompany;
+    }
 }

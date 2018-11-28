@@ -51,5 +51,9 @@ public class CompaniesResource {
         return ResponseEntity.ok(service.delCompany(id));
     }
 
+    @PutMapping(path = "/{id}", produces = {"application/json"})
+    public ResponseEntity<Company> updateById(@PathVariable int id, @RequestBody Company company) {
+        return ResponseEntity.ok(service.updateCompany(id, company));
+    }
 
 }

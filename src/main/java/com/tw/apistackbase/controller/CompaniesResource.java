@@ -3,6 +3,7 @@ package com.tw.apistackbase.controller;
 import com.tw.apistackbase.Services.Service;
 import com.tw.apistackbase.dto.Company;
 import com.tw.apistackbase.dto.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,11 @@ import java.util.logging.Logger;
 @RequestMapping("/companies")
 public class CompaniesResource {
     private final Logger log = Logger.getLogger(this.getClass().getName());
-    Service service = new Service();
+    Service service;
+    @Autowired
+    public CompaniesResource(Service service) {
+        this.service = service;
+    }
 
     @GetMapping(path = "", produces = {"application/json"})
     public ResponseEntity<List<Company>> getAll(@RequestParam(value = "page", required=false) Integer page, @RequestParam(value = "pageSize", required=false) Integer pageSize) {
@@ -25,15 +30,18 @@ public class CompaniesResource {
     @PostMapping(produces = {"application/json"})
     public ResponseEntity<String> add(@RequestBody Company company) {
         List<Employee> tempEmployees = new ArrayList<>();
+        String result = "";
         for (Employee employee : company.getEmployees()) {
             Employee newEmployee = new Employee(employee.getName(), employee.getAge(), employee.getGender(), employee.getSalary());
             service.addEmployee(newEmployee);
+            result+= "Employee name: " + newEmployee.getName() + "; ";
             tempEmployees.add(newEmployee);
         }
 
         Company newCompany = new Company(company.getCompanyName(), tempEmployees.size(), tempEmployees);
         service.addCompany(newCompany);
-        return ResponseEntity.ok("Success: id = " + newCompany.getId());
+        result+="Company Name: " + newCompany.getId() + "; ";
+        return ResponseEntity.ok("Success: " + result);
     }
 
     @GetMapping(path = "/{id}", produces = {"application/json"})

@@ -97,23 +97,27 @@ public class Service {
 
     public String delEmployee(int id) {
         String target = null;
+        Employee targetEmployee = null;
         for (Employee employee : employees) {
             if (employee.getId()==id) {
                 target = employee.getName()+ " is deleted";
-                employees.remove(employee);
+                targetEmployee = employee;
             }
         }
+        employees.remove(targetEmployee);
         return target;
     }
 
     public String delCompany(int id) {
         String target = null;
+        Company targetCompany = null;
         for (Company company : companies) {
             if (company.getId()==id) {
                 target = company.getCompanyName() + " is deleted";
-                companies.remove(company);
+                targetCompany = company;
             }
         }
+        companies.remove(targetCompany);
         return target;
     }
 }
